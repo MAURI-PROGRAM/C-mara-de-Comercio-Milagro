@@ -9,4 +9,8 @@ export class TabsPage {
 
   constructor() {}
 
+  clickhere(){
+    alert(1);
+  }
+
 }
