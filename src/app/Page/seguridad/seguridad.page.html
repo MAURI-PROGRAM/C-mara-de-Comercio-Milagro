@@ -1,9 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>seguridad</ion-title>
+    <ion-title style="text-align: center;">seguridad</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-segment color="dark" mode="ios">
 
+    <ion-segment-button value="Robos" checked mode="ios">
+      <ion-label>
+        <ion-icon src="assets/img/seguridad/robos.svg">
+        </ion-icon>
+        Robos
+      </ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="Incendio" mode="ios">
+      <ion-label>Incendio</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Emergencia" mode="ios">
+      <ion-label>Emergencia</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-content>
