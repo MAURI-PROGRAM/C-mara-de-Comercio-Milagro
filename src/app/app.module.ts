@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { EndpointProvider, DBkeys ,SessionStorageProvider} from '../providers/providers';
+import { AuthService } from './../services/auth.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { EndpointProvider, DBkeys ,SessionStorageProvider} from '../providers/pr
     EndpointProvider, 
     SessionStorageProvider, 
     DBkeys,
+    AuthService,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
