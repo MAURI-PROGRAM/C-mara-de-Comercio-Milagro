@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { NavigationOptions } from '@ionic/angular/dist/providers/nav-controller';
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public nav: NavController,
+  ) { }
 
   ngOnInit() {
+  }
+  login(){
+    const navigationExtras: NavigationOptions = {
+      state: {
+        
+      },
+      animated: false
+    };
+    this.nav.navigateForward('/tabs/seguridad', navigationExtras);
   }
 
 }
