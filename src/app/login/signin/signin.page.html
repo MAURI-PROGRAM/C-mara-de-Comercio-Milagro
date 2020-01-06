@@ -1,9 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>signin</ion-title>
+    <ion-title class="textcenter">Ingresar</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <br>
+  <br>
+  <br>
+  <ion-row responsive-sm justify-content-center>
+    <button type="submit" class=" ion-activatable button-submit" (click)="login()">
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+      Ingresar
+    </button>
+  </ion-row>
+  <br>
+  <br>
+  <p class="ion-activatable textcenter" (click)="registro()">
+    <ion-ripple-effect type="bounded"></ion-ripple-effect>Regístrate Aquí
+  </p>
+  
 </ion-content>
