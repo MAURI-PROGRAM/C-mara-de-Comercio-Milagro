@@ -19,7 +19,6 @@ export class AuthService {
             [
                 this.sessionDB.remove(DBkeys.ID_TOKEN)
             ]).then(() => {
-            
                 this.sessionDB.set(DBkeys.HAS_LOGGED_IN, false);
                 this.sessionDB.remove(DBkeys.CURRENT_USER);
                 this.nav.navigateRoot('/login');

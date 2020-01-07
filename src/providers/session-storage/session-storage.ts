@@ -1,12 +1,11 @@
-import { Injectable } from "@angular/core";
-import {Storage} from "@ionic/storage"
+import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class SessionStorageProvider {
   singleParam: any;
-  listParam: any[] =[];
+  listParam: any[] = [];
   constructor(private storage: Storage) {
-    
   }
 
   public set(settingName: any, value: any) {
@@ -14,18 +13,18 @@ export class SessionStorageProvider {
   }
   public async get(settingName: any) {
     await this.storage
-          .ready();
-      return await this.storage.get(`setting:${settingName}`);
+      .ready();
+    return await this.storage.get(`setting:${settingName}`);
   }
   public remove(settingName: any) {
     return this.storage.remove(`setting:${settingName}`);
   }
 
-  public passParametersSingle(singleParam:any){
-    this.singleParam=singleParam;
+  public passParametersSingle(singleParam: any) {
+    this.singleParam = singleParam;
   }
 
-  public passParametersList(listParam:any[]){
-    this.listParam=listParam;
+  public passParametersList(listParam: any[]) {
+    this.listParam = listParam;
   }
 }
