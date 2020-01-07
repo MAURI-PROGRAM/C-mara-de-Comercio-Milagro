@@ -22,4 +22,19 @@
       <ion-label>Emergencia</ion-label>
     </ion-segment-button>
   </ion-segment>
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <!-- <ion-fab-button routerLink="/idea"> -->
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list>
+    <ion-item button [routerLink]="['/idea', coordenada.id]" *ngFor="let coordenada of (coordenadas | async)">
+      longitud: {{ coordenada.longitud }} , latitud: {{ coordenada.latitud }}
+    </ion-item>
+  </ion-list>
 </ion-content>
