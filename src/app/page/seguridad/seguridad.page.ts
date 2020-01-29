@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CoordenadasService, Coordenadas } from '../../../providers/services/coordenadas.service';
+import { PanicoService } from '../../../providers/services/coordenadas.service';
 import { Observable } from 'rxjs';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {Panico} from '../../../interface/IPanico'
 
 @Component({
   selector: 'app-seguridad',
@@ -9,38 +10,42 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
   styleUrls: ['./seguridad.page.scss'],
 })
 
-
-
-
 export class SeguridadPage implements OnInit {
 
-  emergencia = 'robo';
-  latitud: number;
-  longitud: number;
-  solicitud: Coordenadas;
-  public coordenadas: Observable<Coordenadas[]>;
+  panico:Panico;
+  
+  
   constructor(
-    private coordenadasService: CoordenadasService,
+    private _panicoservice: PanicoService,
     public geolocation: Geolocation
-  ) { }
-
-  ngOnInit() {
-    this.coordenadas = this.coordenadasService.getCordenadas();
+  ) { 
+    this.panico={
+      latitud:'sdf',
+      longitud:'sdf',
+      tipo:'robo',
+      usuario:'asda',
+      fecha:new Date()
+    }
   }
 
-  enviarEmergencia(emergencia: string) {
-    this.geolocation.getCurrentPosition().then((geoposition: any) => {
-      const latitud = geoposition.coords.latitude;
-      const longitud = geoposition.coords.longitude;
-      console.log(this.latitud);
-      console.log(this.longitud);
+  ngOnInit() {
+  }
 
-      this.solicitud = {
-        emergencia,
-        latitud,
-        longitud
-      };
-      this.coordenadasService.addCordenadas(this.solicitud);
+  cambiarPanico(tipoPanico:string){
+    this.panico.tipo= tipoPanico;
+  }
+
+  compararPanico(tipoPanico:string){
+    return this.panico.tipo == tipoPanico;
+  }
+
+  enviarPanico(tipoPanico: string) {
+    this.geolocation.getCurrentPosition().then((geoposition: any) => {
+      this.panico.latitud = geoposition.coords.latitude;
+      this.panico.longitud = geoposition.coords.longitude;
+      this.panico.tipo =tipoPanico;
+      
+      this._panicoservice.addCordenadas(this.panico);
 
     });
 

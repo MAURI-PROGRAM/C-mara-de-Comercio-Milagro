@@ -28,6 +28,17 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'perfil',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../perfil/perfil.module').then(m => m.PerfilPageModule)
+          }
+        ]
+      },
+
+      {
         path: '',
         redirectTo: 'seguridad',
         pathMatch: 'full'

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PanicoService } from '../../../providers/services/coordenadas.service';
+import {Panico} from '../../../interface/IPanico';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-informativo',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformativoPage implements OnInit {
 
-  constructor() { }
+  public coordenadas: Observable<Panico[]>;
+  constructor(
+    private _panicoservice: PanicoService,
+
+  ) { 
+    this.coordenadas = this._panicoservice.getCordenadas();
+  }
 
   ngOnInit() {
   }

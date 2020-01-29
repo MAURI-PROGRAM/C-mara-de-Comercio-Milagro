@@ -17,6 +17,14 @@ const routes: Routes = [
   {
     path: 'signin',
     loadChildren: () => import('./login/signin/signin.module').then( m => m.SigninPageModule)
+  },
+  {
+    path: 'erfil',
+    loadChildren: () => import('./page/erfil/erfil.module').then( m => m.ErfilPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./page/perfil/perfil.module').then( m => m.PerfilPageModule)
   }
 ];
 @NgModule({

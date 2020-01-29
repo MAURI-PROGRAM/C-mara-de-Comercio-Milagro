@@ -16,11 +16,17 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase),
+  imports: [BrowserModule, 
+            IonicModule.forRoot(),
+            IonicStorageModule.forRoot(),
+             AppRoutingModule, AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule],
   providers: [
     StatusBar,
@@ -30,6 +36,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     AuthService,
     SplashScreen,
     Geolocation,
+    UniqueDeviceID,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FirestoreSettingsToken, useValue: {} }
   ],

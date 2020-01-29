@@ -1,46 +1,43 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title class="textcenter">seguridad</ion-title>
+<ion-header >
+  <ion-toolbar style="background-color: green;">
+    <ion-title class="textcenter">Boton de pánaico</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-segment color="dark" mode="ios">
-
-    <ion-segment-button value="Robos" checked mode="ios" (click)="emergencia = 'robo'">
+  <ion-segment color="dark" mode="ios" >
+    <ion-segment-button value="Robos" checked mode="ios" (click)="cambiarPanico('robo')">
       <ion-label>
         <ion-icon src="assets/img/seguridad/robos.svg">
         </ion-icon>
         Robos
       </ion-label>
     </ion-segment-button>
-
-    <ion-segment-button value="Incendio" mode="ios" (click)="emergencia = 'incendio'">
-      <ion-label>Incendio</ion-label>
+    <ion-segment-button value="Incendio" mode="ios" (click)="cambiarPanico('incendio')">
+      <ion-label>
+        <ion-icon src="assets/img/seguridad/incendio.svg">
+        </ion-icon>
+        Incendio</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="Emergencia" mode="ios" (click)="emergencia = 'asistencia'">
-      <ion-label>Emergencia</ion-label>
+    <ion-segment-button value="Emergencia" mode="ios" (click)="cambiarPanico('asistencia')">
+      <ion-label><ion-icon src="assets/img/seguridad/asistencia.svg">
+      </ion-icon>
+      Asistencia</ion-label>
     </ion-segment-button>
   </ion-segment>
 
 
 
-  <ion-fab mini vertical="bottom" horizontal="center" vertical="center" slot="fixed">
-    <ion-fab-button color="primary" *ngIf="emergencia == 'robo'" (click)="enviarEmergencia('robo')">
-      <ion-icon name="alert"></ion-icon>
+  <ion-fab mini vertical="bottom" horizontal="center" vertical="center" slot="fixed" *ngIf="panico?.tipo">
+    <ion-fab-button color="primary" *ngIf="compararPanico('robo')" (click)="enviarPanico('robo')">
+      
     </ion-fab-button>
-    <ion-fab-button color="danger" *ngIf="emergencia == 'incendio'">
-      <ion-icon name="alert"></ion-icon>
+    <ion-fab-button color="danger" *ngIf="compararPanico('incendio')" (click)="enviarPanico('incendio')">
+      
     </ion-fab-button>
-    <ion-fab-button color="warning" *ngIf="emergencia == 'asistencia'">
-      <ion-icon name="alert"></ion-icon>
+    <ion-fab-button color="warning" *ngIf="compararPanico('asistencia')" (click)="enviarPanico('asistencia')">
+      
     </ion-fab-button>
   </ion-fab>
 
-
-  <ion-list>
-    <ion-item button [routerLink]="['/idea', coordenada.id]" *ngFor="let coordenada of (coordenadas | async)">
-      longitud: {{ coordenada.longitud }} , latitud: {{ coordenada.latitud }}
-    </ion-item>
-  </ion-list>
 </ion-content>

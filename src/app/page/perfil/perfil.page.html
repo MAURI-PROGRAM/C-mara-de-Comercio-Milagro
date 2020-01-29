@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Información general</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-chip style="text-align:center;">
+    <ion-avatar>
+      <img src="assets/img/perfil/avatar.png">
+    </ion-avatar>
+    <ion-label>Nombre del usuario</ion-label>
+  </ion-chip>
+  <ion-label>
+    <p>
+      Descripción de perfil
+    </p>
+    <p>
+      Descripción de perfil
+    </p>
+    <p>
+      Descripción de perfil
+    </p>
+  </ion-label>
+  <ion-row responsive-sm   justify-content-center>
+    <button class=" ion-activatable button-submit" (click)="logout()">
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+      Salir
+    </button>
+  </ion-row>
+</ion-content>
