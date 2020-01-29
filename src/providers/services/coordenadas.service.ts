@@ -8,6 +8,7 @@ export interface Coordenadas {
     id?: string;
     latitud: string;
     longitud: string;
+    emergencia: string;
 }
 
 

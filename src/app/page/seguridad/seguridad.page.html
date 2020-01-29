@@ -7,7 +7,7 @@
 <ion-content>
   <ion-segment color="dark" mode="ios">
 
-    <ion-segment-button value="Robos" checked mode="ios">
+    <ion-segment-button value="Robos" checked mode="ios" (click)="emergencia = 'robo'">
       <ion-label>
         <ion-icon src="assets/img/seguridad/robos.svg">
         </ion-icon>
@@ -15,22 +15,28 @@
       </ion-label>
     </ion-segment-button>
 
-    <ion-segment-button value="Incendio" mode="ios">
+    <ion-segment-button value="Incendio" mode="ios" (click)="emergencia = 'incendio'">
       <ion-label>Incendio</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="Emergencia" mode="ios">
+    <ion-segment-button value="Emergencia" mode="ios" (click)="emergencia = 'asistencia'">
       <ion-label>Emergencia</ion-label>
     </ion-segment-button>
   </ion-segment>
 
 
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <!-- <ion-fab-button routerLink="/idea"> -->
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
+  <ion-fab mini vertical="bottom" horizontal="center" vertical="center" slot="fixed">
+    <ion-fab-button color="primary" *ngIf="emergencia == 'robo'" (click)="enviarEmergencia('robo')">
+      <ion-icon name="alert"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="danger" *ngIf="emergencia == 'incendio'">
+      <ion-icon name="alert"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="warning" *ngIf="emergencia == 'asistencia'">
+      <ion-icon name="alert"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
 
   <ion-list>
     <ion-item button [routerLink]="['/idea', coordenada.id]" *ngFor="let coordenada of (coordenadas | async)">
