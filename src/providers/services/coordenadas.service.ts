@@ -1,44 +1,29 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
-
-export interface Coordenadas {
-    id?: string;
-    latitud: string;
-    longitud: string;
-    emergencia: string;
-}
+import {Panico} from '../../interface/IPanico'
 
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class CoordenadasService {
-    private ideas: Observable<Coordenadas[]>;
-    private ideaCollection: AngularFirestoreCollection<Coordenadas>;
+export class PanicoService {
+    private ideas: Observable<Panico[]>;
+    private ideaCollection: AngularFirestoreCollection<Panico>;
 
     constructor(private afs: AngularFirestore) {
-        this.ideaCollection = this.afs.collection<Coordenadas>('Coordenadas');
-        this.ideas = this.ideaCollection.snapshotChanges().pipe(
-            map(actions => {
-                return actions.map(a => {
-                    const data = a.payload.doc.data();
-                    const id = a.payload.doc.id;
-                    return { id, ...data };
-                });
-            })
-        );
+        this.ideaCollection = this.afs.collection<Panico>('Panico');
+        this.ideas = this.ideaCollection.valueChanges();
     }
 
-    getCordenadas(): Observable<Coordenadas[]> {
+    getCordenadas(): Observable<Panico[]> {
         return this.ideas;
     }
 
-    getCordenada(id: string): Observable<Coordenadas> {
-        return this.ideaCollection.doc<Coordenadas>(id).valueChanges().pipe(
+    getCordenada(id: string): Observable<Panico> {
+        return this.ideaCollection.doc<Panico>(id).valueChanges().pipe(
             take(1),
             map(idea => {
                 idea.id = id;
@@ -47,11 +32,11 @@ export class CoordenadasService {
         );
     }
 
-    addCordenadas(coordenada: Coordenadas): Promise<DocumentReference> {
+    addCordenadas(coordenada: Panico): Promise<DocumentReference> {
         return this.ideaCollection.add(coordenada);
     }
 
-    updateCordenadas(idea: Coordenadas): Promise<void> {
+    updateCordenadas(idea: Panico): Promise<void> {
         return this.ideaCollection.doc(idea.id).update({ latitud: idea.latitud, longitud: idea.longitud });
     }
 
